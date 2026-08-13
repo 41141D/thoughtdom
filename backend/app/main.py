@@ -11,7 +11,18 @@ from app.database import Base, engine, SessionLocal
 from app.models import Community
 from app.routers import auth, communities, posts, comments, votes, users, media, tags, memberships, search
 
-app = FastAPI(title="ThoughtDom API", version="0.1.0")
+# Production hardening: disable the public Swagger/ReDoc/OpenAPI docs.
+# They expose the entire API surface (schemas, endpoints, examples) to anyone,
+# which is free reconnaissance material for attackers. Keep /health so uptime
+# monitors still work. Local dev can re-enable via DEBUG_DOCS=1 if ever needed.
+_docs = None if os.environ.get("DEBUG_DOCS", "").lower() in ("1", "true") else False
+app = FastAPI(
+    title="ThoughtDom API",
+    version="0.1.0",
+    docs_url=_docs,
+    redoc_url=_docs,
+    openapi_url=_docs,
+)
 
 cors_origins = parse_cors_origins(settings.cors_origins)
 
@@ -34,8 +45,14 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    # Strict header allowlist: browsers may only send these headers in
+    # cross-origin requests. Echoing every requested header (allow_headers=["*"])
+    # combined with allow_credentials=True would let any listed origin send
+    # arbitrary headers like Authorization or X-Custom-* at will -- acceptable
+    # in practice only because credentials are cookie-bound and the origin
+    # list is tight, but the allowlist removes the attack surface entirely.
+    allow_headers=["Content-Type", "Accept", "X-Requested-With"],
 )
 
 app.include_router(auth.router)
