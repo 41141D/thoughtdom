@@ -107,9 +107,11 @@ def login(payload: LoginRequest, request: Request, db: Session = Depends(get_db)
 
 # One shared session cookie for the browser flow (cookie, not just a bearer
 # token in localStorage). HttpOnly keeps it unreadable to page scripts, so an
-# XSS payload can't harvest it. Secure only in production since localhost dev
-# runs over plain http. SameSite=Lax allows the GET /auth/me bootstrap while
-# still blocking cross-site POST/DELETE requests that try to reuse it.
+# XSS payload can't harvest it. The frontend is deployed on a DIFFERENT
+# registrable domain (Vercel) than the API (Render), so every request is
+# cross-site: SameSite=None with Secure is required for the browser to store
+# the cookie and send it on fetch() calls. Cross-site CSRF is covered by the
+# strict CORS_ORIGINS allowlist and credentials:include on every request.
 COOKIE_NAME = "td_token"
 COOKIE_MAX_AGE = settings.access_token_expire_minutes * 60
 
@@ -119,8 +121,11 @@ def _set_session_cookie(resp: Response, token: str) -> None:
         key=COOKIE_NAME,
         value=token,
         httponly=True,
+        # Secure is required for SameSite=None; in local dev (http) tests use
+        # SameSite=None without Secure only when explicitly allowed by the
+        # dev secret prefix. Production (Render) always runs over https.
         secure=not settings.jwt_secret.startswith("dev-"),
-        samesite="lax",
+        samesite="none",
         max_age=COOKIE_MAX_AGE,
         path="/",
     )
