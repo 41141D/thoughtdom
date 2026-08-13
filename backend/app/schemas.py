@@ -8,7 +8,8 @@ from pydantic import BaseModel, Field, field_validator
 
 class RegisterRequest(BaseModel):
     password: str = Field(min_length=8)
-    preferred_username: Optional[str] = None  # if taken, a random one is generated instead
+    preferred_username: Optional[str] = None
+    random_username: bool = False  # opt-in anonymous identity; never silent
 
 
 class LoginRequest(BaseModel):

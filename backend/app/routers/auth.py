@@ -56,11 +56,26 @@ def register(payload: RegisterRequest, request: Request, db: Session = Depends(g
             detail="Too many accounts created from this network recently.",
         )
 
+    # Anonymous-by-design is OPT-IN: the server never silently replaces a
+    # chosen username with a random one (that gaslit users -- they could not
+    # log back in, because the account existed under a name they never saw).
+    # An anonymous identity is only minted when the user explicitly asks for
+    # it via random_username=True.
     username = payload.preferred_username
-    if username:
+    if not payload.random_username:
+        if not username:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail="Username is required, or request a random anonymous identity.",
+            )
         exists = db.query(User).filter(User.username == username).first()
         if exists:
-            username = None  # fall back to random generation below
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="That username is taken. Pick another, or create an anonymous identity.",
+            )
+    else:
+        username = None
 
     if not username:
         for _ in range(10):
