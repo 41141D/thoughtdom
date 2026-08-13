@@ -1,0 +1,23 @@
+# Secrets (never commit)
+.env
+
+# Local dev artifacts
+*.db
+uploads/
+backend/uploads/
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/.venv/
+
+# Build output
+.next/
+frontend/.next/
+backend/__pycache__/
+backend/app/__pycache__/
+backend/app/routers/__pycache__/
+backend/tests/__pycache__/
+**/__pycache__/
+.pytest_cache/
+*.pyc

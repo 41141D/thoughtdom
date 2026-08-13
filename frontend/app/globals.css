@@ -1,0 +1,318 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Editorial design system (Phase 2 polish). Paper light, ink text, a single
+   restrained accent. Serif display for headings, humanist sans for body.
+   RTL-safe: no hard-coded left borders or margins anywhere in this file. */
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Inter:wght@400;500;600&display=swap");
+
+html {
+  color-scheme: light;
+}
+
+/* ============================================================
+   DESIGN TOKENS v2
+   Role-based CSS custom properties. Light theme is the default;
+   html.dark remaps every token. The intent is a visible hierarchy
+   between every layer -- page background, surfaces, borders,
+   primary/secondary/muted text -- without making dark mode bright.
+   Components reference var(--td-*) via Tailwind's extended color
+   map (tailwind.config.js) and never hardcode hexes.
+   ============================================================ */
+:root,
+html:not(.dark) {
+  --td-paper: #f6f3ec;      /* page background -- warm off-white */
+  --td-ink: #1a1917;        /* deepest surface (only used in dark) */
+  --td-surface: #ffffff;    /* cards */
+  --td-surface2: #efeae0;   /* elevated elements, inputs, hover */
+  --td-line: #dcd5c6;       /* borders -- visible hairlines */
+  --td-text: #1c1b19;       /* primary text */
+  --td-muted: #5f5a4f;      /* secondary text -- readable on white */
+}
+
+body {
+  background-color: var(--td-paper);
+  color: var(--td-text);
+  font-family: "Inter", sans-serif;
+}
+
+/* Serif display headings */
+.font-display {
+  font-family: "Source Serif 4", Georgia, serif;
+}
+
+/* Reply-type pills stay typographic, not pill-shaped -- small caps, hairline
+   border, no rounded blobs. Border and colors inherit meaningfully in RTL
+   because they are symmetric. */
+.reply-type-pill {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.5rem;
+  border-radius: 2px;
+  border: 1px solid #d8d3c8;
+}
+
+/* Keyboard-only focus ring. :focus-visible means mouse clicks don't get a
+   ring but Tab navigation always does. Accent is the restrained ink-teal. */
+:focus-visible {
+  outline: 2px solid #2b5d63;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* The signature element: a steel-man restatement reads as a "mirror" --
+   quoting the other side back before disagreement is allowed to speak.
+   Uses border-inline-start so the rule sits on the start side in both LTR
+   and RTL without any direction-specific classes. */
+.steelman-mirror {
+  border-inline-start: 3px solid #b9834b;
+  background-color: #f5efe6;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+  color: #3d3a33;
+}
+
+/* ---- motion & loading primitives ---- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.35s ease-out both;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #efece5 25%, #e5e1d8 37%, #efece5 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* Scroll-triggered reveal. */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile nav links + user/menu dropdown items: consistent, tappable rows
+   with visible hover and an amber focus ring. Sign-out callers add
+   text-danger themselves. */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.5rem;
+  border-radius: var(--radius-md, 0.375rem);
+  color: var(--td-muted);
+  font-weight: 500;
+  transition: color 0.15s, background-color 0.15s;
+  min-height: 2.5rem;
+}
+.nav-link:hover {
+  color: var(--td-text);
+  background-color: var(--td-surface2);
+}
+html.dark .nav-link { color: #b7b0a2; }
+html.dark .nav-link:hover { color: #f2efe9; }
+
+.menu-item {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--td-text);
+  transition: background-color 0.15s;
+  min-height: 2.25rem;
+}
+.menu-item:hover {
+  background-color: var(--td-surface2);
+}
+
+/* Links get a quiet underline treatment instead of colored links. */
+.prose a {
+  text-decoration: underline;
+  text-decoration-color: #d3ccb9;
+  text-underline-offset: 3px;
+}
+html.dark .prose a {
+  text-decoration-color: #554e41;
+}
+
+/* Respected globally: none of the app's animations checked for this before. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-fade-in-up,
+  .skeleton {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   DARK THEME
+   Same editorial identity: deep charcoal ink, warm off-white
+   text, slightly lifted surfaces, subtle borders, muted secondary
+   text. The amber Steel-Man accent (#b9834b) carries over unchanged.
+   All light-mode utility colors are re-mapped here when the
+   `.dark` class is present on <html>, so components need no
+   dark: prefixes anywhere.
+   ============================================================ */
+html.dark {
+  color-scheme: dark;
+  --td-paper: #111110;      /* page background -- deepest ink */
+  --td-ink: #111110;
+  --td-surface: #1e1c19;    /* cards -- clearly lighter than the page */
+  --td-surface2: #2b2824;   /* elevated surfaces, inputs, hover */
+  --td-line: #4a453d;       /* borders -- clearly visible on dark surfaces */
+  --td-text: #f2efe9;       /* primary text -- warm off-white */
+  --td-muted: #b7b0a2;      /* secondary text -- muted but legible */
+}
+html.dark body {
+  background-color: var(--td-paper);
+  color: var(--td-text);
+}
+html.dark .bg-paper { background-color: #111110; }
+html.dark .bg-ink { background-color: #111110; }
+html.dark .bg-surface { background-color: #1e1c19; }
+/* Translucent card surface. Avoid `bg-surface/70`: the /70 modifier resolves
+   to rgba(255,255,255,.7) even in dark mode because the html.dark override
+   only matches the exact utility name. This dedicated utility re-maps in
+   both directions cleanly. */
+.card-translucent { background-color: rgba(255, 255, 255, 0.7); }
+html.dark .card-translucent { background-color: rgba(30, 28, 25, 0.7); }
+html.dark .bg-surface2 { background-color: #2b2824; }
+html.dark .text-ink { color: #f2efe9; }
+html.dark .text-surface { color: #1e1c19; }
+html.dark .text-text { color: #f2efe9; }
+html.dark .text-muted { color: #b7b0a2; }
+html.dark .border-line { border-color: #403b33; }
+html.dark .hover\:bg-surface2:hover { background-color: #2b2824; }
+html.dark .hover\:text-text:hover { color: #f2efe9; }
+html.dark .hover\:text-signal:hover { color: #c9a265; }
+html.dark .hover\:text-danger:hover { color: #d46a6a; }
+html.dark .focus\:border-challenge:focus { border-color: #c28b46; }
+html.dark input::placeholder,
+html.dark textarea::placeholder { color: #8d8678; }
+
+/* Signature steel-man mirror in dark mode: warm dark quote panel. */
+html.dark .steelman-mirror {
+  background-color: #2e271d;
+  color: #e3d8c2;
+  border-inline-start-color: #c28b46;
+}
+html.dark .reply-type-pill { border-color: #403b33; }
+
+/* Skeleton shimmer matches the dark surfaces. */
+html.dark .skeleton {
+  background: linear-gradient(90deg, #26231f 25%, #312d27 37%, #26231f 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+/* Prose links: only the underline color warms up in dark mode;
+   text color inherits from the page. */
+html.dark .prose a {
+  text-decoration-color: #554e41;
+}
+/* Focus ring: amber reads better against charcoal than teal does. */
+html.dark :focus-visible {
+  outline-color: #c28b46;
+}
+
+/* ============================================================
+   CONTENT WRAPPING (overflow-fix layer)
+   User-generated text MUST stay inside its parent container and
+   must never overflow horizontally. Long unbroken strings (URLs,
+   repeated glyphs, paste spam) get broken wherever needed; content
+   always wraps, never clips. Intentional code-block scrolling is
+   preserved via overflow-x:auto on <pre>.
+
+   Applied in one place so every surface (post detail, feed cards,
+   comments, replies, search results, profiles, steel-man mirrors)
+   inherits the same guarantee.
+   ============================================================ */
+
+/* Any user-supplied string: break inside words when there's no
+   natural break point, wrap anywhere as a last resort, and keep
+   the element from widening past its flex/grid parent. */
+.user-content,
+.prose {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Single-line text fields rendered as plain strings (usernames,
+   community names, titles) plus markdown block elements. */
+h1, h2, h3,
+.prose h1, .prose h2, .prose h3,
+blockquote,
+.prose ul,
+.prose ol,
+.prose li,
+.prose p,
+.prose code,
+.prose pre,
+.prose a,
+.steelman-mirror {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Inline code must not escape its line. */
+code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Fenced code blocks are the one intentional overflow case:
+   preserve horizontal scrolling only there. */
+pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Reply-type pills (tags, community badges, steel-man status):
+   a very long tag label must wrap instead of widening the row. */
+.reply-type-pill {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Flex/grid header rows (author · date · actions) and vote rows
+   must not let a long first child force the row wider than its
+   parent. min-width: 0 on direct children covers it globally. */
+.flex.items-center > *,
+.flex.items-baseline > *,
+.grid > * {
+  min-width: 0;
+}

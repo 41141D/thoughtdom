@@ -1,0 +1,382 @@
+{
+  "nav": {
+    "why": "Why",
+    "communities": "Communities",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "newPost": "New Post",
+    "getName": "Get Name",
+    "menu": "Menu",
+    "theme": "Theme",
+    "settings": "Settings",
+    "userMenu": "User menu",
+    "profile": "Profile"
+  },
+  "auth": {
+    "title": "Get an Anonymous Name",
+    "subtitle": "No email. No real name. One will be assigned to you, or you can choose your own.",
+    "preferredName": "Preferred name (optional)",
+    "password": "Password",
+    "createAccount": "Create anonymous account",
+    "login": "Log In",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "username": "Username",
+    "anonNameTitle": "Get an anonymous name",
+    "anonNameSub": "No email. No real name. We’ll assign one, or you can propose your own.",
+    "preferredPlaceholder": "e.g. QuietFalcon"
+  },
+  "post": {
+    "newPost": "New Post",
+    "title": "Title",
+    "body": "Body",
+    "submit": "Publish",
+    "repliesCount": "{count, plural, =0 {no replies} one {# reply} other {# replies}}"
+  },
+  "comments": {
+    "reply": "Reply",
+    "replies": "Replies",
+    "writeReply": "Write a reply"
+  },
+  "challenge": {
+    "neutral": "Neutral",
+    "agree": "Agree",
+    "challenge": "Challenge",
+    "fairSummary": "First summarize the idea fairly, then write your critique."
+  },
+  "votes": {
+    "upvote": "Upvote",
+    "downvote": "Downvote"
+  },
+  "errors": {
+    "failedFetch": "Failed to fetch data",
+    "somethingWrong": "Something went wrong"
+  },
+  "why": {
+    "title": "What is ThoughtDom?",
+    "existence": {
+      "title": "What is ThoughtDom?",
+      "intro": "The name ThoughtDom comes from Thought + Freedom (Domain of Freedom). It is a platform built on one simple rule:",
+      "rule": "Understand first. Then disagree.",
+      "paragraphs": [
+        "Most platforms tie your identity to your ideas. They write your name next to your thoughts and make them part of your permanent record. This turns conversation into performance, and dialogue into judgment and punishment.",
+        "We built something completely different."
+      ]
+    },
+    "anonymity": {
+      "title": "Built-in Anonymity & Privacy",
+      "intro": "On ThoughtDom, your ideas are independent of who you are.",
+      "items": [
+        "You can participate without revealing your identity. We don't link your real-world identity to your posts.",
+        "Your personal reputation stays yours, and your ideas live freely.",
+        "An argument must be judged on its own merit, not on who said it."
+      ],
+      "closing": "This changes everything fundamentally. When no one knows who you are, you can think calmly and clearly. You can change your mind and try out ideas that don't fit your public image."
+    },
+    "beliefs": {
+      "title": "Core Values",
+      "principles": [
+        {
+          "principle": "Curiosity over Certainty",
+          "description": "A better question is worth more than a final answer. A belief that hasn't been thought through is fragile."
+        },
+        {
+          "principle": "Understanding over Disagreement",
+          "description": "You don't have to agree with someone to learn from them. Understanding the opposing view is the beginning of dialogue, not the end of it."
+        },
+        {
+          "principle": "Privacy over Surveillance",
+          "description": "Your ideas matter; your behavioral data does not. We don't build profiles on anyone or surveil anyone."
+        },
+        {
+          "principle": "Dialogue over Winning",
+          "description": "The goal is mutual understanding, not winning an argument, scoring political points, or accumulating followers."
+        }
+      ]
+    },
+    "steelManGate": {
+      "title": "The Steel-Man Gate",
+      "intro": "Before you criticize an idea, you must first state it so clearly and fairly for its owner that they would say:",
+      "quote": "\"Yes, that is exactly what I mean.\"",
+      "body": "Only then do you have the right to disagree.",
+      "paragraphs": [
+        "This friction is intentional. It slows you down and forces you past your first impulses — like quick rejection, anger, or a rush to win. It asks you to truly listen.",
+        "Genuine understanding is built this way."
+      ]
+    },
+    "neverBecome": {
+      "title": "What ThoughtDom Will Never Be",
+      "items": [
+        {
+          "title": "A Surveillance or Ad Engine",
+          "description": "We don't build hidden behavioral profiles or collect your data to sell."
+        },
+        {
+          "title": "An Addiction Machine",
+          "description": "We are not designed to capture your attention indefinitely. When you're done, you can leave the platform."
+        },
+        {
+          "title": "A Popularity Contest",
+          "description": "Follower counts don't make ideas powerful, and they don't make them worthless either."
+        }
+      ],
+      "intro": "ThoughtDom will never track you, sell your data, or optimize you into an engagement metric. It is a place for thoughts, not a funnel."
+    },
+    "vision": {
+      "title": "The Ultimate Goal",
+      "intro": "Our metric for success is not user growth or time spent on the platform.",
+      "question": "Our question is very simple:",
+      "closing": "Did a conversation help two people understand each other a little better?",
+      "paragraphs": [
+        "The internet is full of places to be heard and monitored. We built a place for free thinking and mutual understanding."
+      ]
+    },
+    "meta": {
+      "title": "What is ThoughtDom?",
+      "description": "ThoughtDom is a platform built on one rule: understand first, then disagree. Built-in anonymity, the Steel-Man Gate, and a focus on genuine understanding over performance."
+    },
+    "hero": {
+      "heading": "Understand first. Then disagree.",
+      "subheading": "ThoughtDom is built on one rule — and everything else follows from it.",
+      "quote": "Ideas should be judged on their merit, not on who said them."
+    }
+  },
+  "ui": {
+    "menu": "Menu",
+    "loading": "Loading communities",
+    "cancel": "Cancel",
+    "collapse": "Collapse",
+    "hidden": "hidden",
+    "reply": "Reply",
+    "posting": "Posting…",
+    "create": "Create",
+    "creating": "Creating…",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "createAccount": "Create anonymous account",
+    "whatIsCommunity": "What is this community about?",
+    "postsCount": "{count, plural, =0 {no posts yet} one {# post} other {# posts}}",
+    "tagAlreadyAdded": "That tag is already added",
+    "removeImage": "Remove image",
+    "writePlaceholder": "Write your idea. Drag images in, paste screenshots, or use the toolbar above. Markdown supported.",
+    "steelmanPlaceholder": "What are they actually claiming?",
+    "noReplies": "No replies yet — be the first to respond.",
+    "enterToAdd": "Enter to add",
+    "backspaceToRemove": "Backspace to remove",
+    "contribTimeline": "Contribution timeline",
+    "curiosityMap": "Curiosity map",
+    "helpfulComments": "Helpful comments",
+    "helpfulPosts": "Helpful posts",
+    "recentActivity": "Recent activity",
+    "reputation": "Reputation",
+    "toolbarHeader": "Header",
+    "toolbarQuote": "Quote",
+    "toolbarCode": "Code",
+    "toolbarList": "Bullet list",
+    "toolbarImage": "Image",
+    "toolbarUpload": "Upload image",
+    "points": "pts",
+    "defaultCommunity": "General",
+    "maxTags": "You can add up to {count} tags",
+    "maxTagLen": "Tags must be {count} characters or fewer",
+    "removeTag": "Remove {tag}",
+    "tagPlaceholder": "e.g. Programming, Python, AI",
+    "addAnother": "Add another…",
+    "add": "Add",
+    "toolbarBold": "Bold",
+    "toolbarItalic": "Italic",
+    "toolbarLink": "Link",
+    "uploading": "Uploading…",
+    "topicPlaceholder": "e.g. artificial intelligence, biology",
+    "dropImages": "Drop images to upload",
+    "noPreview": "Nothing to preview yet.",
+    "characters": "characters",
+    "words": "words",
+    "minRead": "min read",
+    "title": "Post an idea",
+    "subtitle": "Every space where ideas get posted.",
+    "createCommunity": "Create community",
+    "default": "Default",
+    "createdBy": "Created by {creator}",
+    "name": "Name",
+    "namePlaceholder": "e.g. programming",
+    "nameRules": "3–30 characters. Letters, numbers, underscores and hyphens only.",
+    "description": "Description",
+    "loadingPosts": "Loading posts",
+    "all": "All",
+    "readMore": "Read →",
+    "emptyTitle": "Nothing here yet",
+    "emptyBody": "Be the first to post an idea in {community}.",
+    "thisCommunity": "this community",
+    "postFirstIdea": "Post the first idea",
+    "draftRestored": "Draft restored — dismiss",
+    "community": "Community",
+    "titleLabel": "Title",
+    "yourIdea": "Your idea",
+    "topicsHint": "Topics power your profile’s Curiosity Map — tag what this idea is actually about.",
+    "tags": "Tags",
+    "tagsHint": "Up to 5 tags help people find this post inside the community.",
+    "post": "Post",
+    "username": "Username",
+    "password": "Password",
+    "anonNameTitle": "Get an anonymous name",
+    "anonNameSub": "No email. No real name. We’ll assign one, or you can propose your own.",
+    "preferredName": "Preferred name (optional)",
+    "preferredPlaceholder": "e.g. QuietFalcon",
+    "noActivity": "No activity yet.",
+    "activityPost": "post",
+    "activityComment": "comment",
+    "curiosityMapEmpty": "No curiosity map yet — this fills in as they tag posts with topics (Artificial Intelligence, Biology, Physics...). Ask them what they’re into.",
+    "milestonesReached": "Milestones reached",
+    "replyPlaceholder": "Your reply... (markdown: **bold**, *italic*, `code`, [links](url))"
+  },
+  "profile": {
+    "joined": "Joined",
+    "curiosityMapTitle": "Curiosity map",
+    "timelineTitle": "Contribution timeline",
+    "joinedNote": "Your name is your only identity here."
+  },
+  "communities": {
+    "loading": "Loading communities",
+    "postsCount": "{count, plural, =0 {no posts yet} one {# post} other {# posts}}",
+    "title": "Communities",
+    "subtitle": "Every space where ideas get posted.",
+    "createCommunity": "Create community",
+    "default": "Default",
+    "createdBy": "Created by {creator}",
+    "name": "Name",
+    "namePlaceholder": "e.g. programming",
+    "nameRules": "3–30 characters. Letters, numbers, underscores and hyphens only.",
+    "description": "Description",
+    "loadingPosts": "Loading posts",
+    "all": "All",
+    "readMore": "Read →",
+    "emptyTitle": "Nothing here yet",
+    "emptyBody": "Be the first to post an idea in {community}.",
+    "thisCommunity": "this community",
+    "postFirstIdea": "Post the first idea",
+    "joinFirstTitle": "Join to take part",
+    "joinFirstBody": "{community} is a private room. Join it first to see its posts, or browse the General feed.",
+    "yours": "Your communities",
+    "discover": "Discover",
+    "youOwn": "You own this",
+    "moderatorRole": "Moderator",
+    "membersCount": "{count} members"
+  },
+  "create": {
+    "create": "Create",
+    "draftRestored": "Draft restored — dismiss",
+    "community": "Community",
+    "titleLabel": "Title",
+    "yourIdea": "Your idea",
+    "topicsHint": "Topics power your profile’s Curiosity Map — tag what this idea is actually about.",
+    "tags": "Tags",
+    "tagsHint": "Up to 5 tags help people find this post inside the community.",
+    "post": "Post",
+    "createTitle": "Post an idea"
+  },
+  "feed": {
+    "subtitle": "Every space where ideas get posted.",
+    "emptyTitle": "Nothing here yet",
+    "emptyBody": "Be the first to post an idea in {community}.",
+    "feedEmptyTitle": "Nothing here yet",
+    "feedTitle": "Latest ideas",
+    "gateHeading": "Disagree all you want. Just prove you understood first.",
+    "gateBody": "Before a challenge reply can post here, you have to restate the argument fairly — in the words its author would recognize. No names attached, no straw men allowed.",
+    "steelmanGate": "Steel-Man Gate"
+  },
+  "beliefs": {
+    "title": "What we believe"
+  },
+  "existence": {
+    "title": "Existence without exposure"
+  },
+  "neverBecome": {
+    "title": "Never become a product",
+    "intro": "ThoughtDom will never track you, sell your data, or optimize you into an engagement metric. It is a place for thoughts, not a funnel."
+  },
+  "vision": {
+    "title": "A public square, rebuilt"
+  },
+  "title": "Why ThoughtDom",
+  "description": "The case for an anonymous, anonymous-first space for ideas.",
+  "hero": {
+    "heading": "Ideas should be judged on their weight, not the weight of the name behind them.",
+    "quote": "The strongest reply to a weak argument is understanding it well enough to state it fairly.",
+    "subheading": "A public square for thoughts, rebuilt around one rule: challenge the idea, not the person."
+  },
+  "steelManGate": {
+    "title": "The steel-man gate"
+  },
+  "gate": {
+    "failedShort": "not posted",
+    "failedTitle": "Your challenge couldn't be posted",
+    "heldShort": "pending revision",
+    "heldTitle": "Your challenge is held for revision",
+    "passed": "Fair restatement -- your challenge posts.",
+    "revise": "Revise",
+    "reviseHint": "Improve your restatement and resubmit -- once it passes, your challenge posts to the thread.",
+    "verdictFailed": "Not posted",
+    "verdictHeld": "Needs improvement",
+    "verdictPassed": "Passed"
+  },
+  "membership": {
+    "approve": "Approve",
+    "join": "Request to join",
+    "leave": "Leave",
+    "leaveConfirm": "Leave this community?",
+    "manageHint": "As the owner, you approve join requests and can remove members on the members page.",
+    "modPerks": "As a moderator, you can remove members from this community.",
+    "moderation": "Moderation",
+    "noRequests": "No pending join requests right now.",
+    "openToAll": "Open to everyone",
+    "pendingCount": "{count, plural, =1 {# pending join request} other {# pending join requests}}",
+    "reject": "Reject",
+    "removeConfirm": "Remove {username} from this community?",
+    "requestPending": "Request pending",
+    "youMember": "You're a member",
+    "youOwner": "You own this",
+    "joinToReply": "You can only reply to posts in communities you've joined.",
+    "signInToReply": "Signing in lets you join this community and take part in the discussion.",
+    "joinRequestSent": "Join request sent",
+    "manageCommunity": "Manage community"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Appearance, language, and account. No email, no phone, no tracking.",
+    "appearance": "Appearance",
+    "appearanceHint": "Choose how ThoughtDom looks. Your choice is saved on this device and stays consistent across pages.",
+    "language": "Language",
+    "languageHint": "Pick the language for the interface. Pages switch immediately and your preference is remembered.",
+    "active": "active",
+    "account": "Account",
+    "notSignedIn": "Not signed in",
+    "identityHint": "Your name is your only identity here. Nothing else is stored about you.",
+    "viewProfile": "View profile",
+    "signedOut": "Signed out. Take care.",
+    "footer": "ThoughtDom keeps nothing it doesn't need."
+  },
+  "profileTimeline": {
+    "joined": "Joined ThoughtDom",
+    "firstPost": "First post",
+    "firstHelpful": "First helpful contribution",
+    "reputationReached": "{threshold}+ reputation"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search posts and communities",
+    "placeholderMobile": "Search",
+    "postsTab": "Posts",
+    "communitiesTab": "Communities",
+    "noResults": "No results for “{query}”",
+    "searching": "Searching…",
+    "error": "Search failed: {error}",
+    "resultsFor": "Results for “{query}”",
+    "postScore": "{count} points"
+  }
+}
