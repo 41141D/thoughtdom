@@ -302,3 +302,4 @@ export const api = {
   uploadImage: (file: Blob, filename: string) =>
     uploadFile("/media/image", file, filename),
 };
+
