@@ -2,10 +2,11 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY backend/ .
+COPY frontend/Dockerfile /app/frontend.Dockerfile
 
 EXPOSE 8000
 # Privacy-first: use our log config so uvicorn never writes visitor IPs to logs.
