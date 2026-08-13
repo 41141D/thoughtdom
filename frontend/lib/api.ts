@@ -3,11 +3,14 @@
 // stores the token; every request authenticates via `credentials: "include"`.
 // The backend retains Bearer support strictly for legacy/non-browser clients.
 
-// Strip any trailing slash so `API_BASE + "/posts/"` never produces a
-// double-slash path (e.g. "/posts//") which the backend rejects as 404.
-const API_BASE = (
-  process.env.NEXT_PUBLIC_API_URL || "https://thoughtdom-api.onrender.com"
-).replace(/\/+$/, "");
+// Same-origin API proxy in production: vercel.json rewrites every
+// `/api/:path*` request on this site to the Render backend. This makes the
+// session cookie FIRST-PARTY -- Chrome blocks third-party cookies by default
+// since 2025, which silently broke cross-domain cookie auth for most users
+// even with SameSite=None. Local dev keeps using NEXT_PUBLIC_API_URL
+// (e.g. http://localhost:8000) untouched.
+const isProdApi = Boolean(process.env.NEXT_PUBLIC_API_URL);
+const API_BASE = isProdApi ? "/api" : "";
 
 export function mediaUrl(path: string): string {
   if (/^https?:\/\//.test(path)) return path;
