@@ -3,8 +3,11 @@
 // stores the token; every request authenticates via `credentials: "include"`.
 // The backend retains Bearer support strictly for legacy/non-browser clients.
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || "https://thoughtdom-api.onrender.com";
+// Strip any trailing slash so `API_BASE + "/posts/"` never produces a
+// double-slash path (e.g. "/posts//") which the backend rejects as 404.
+const API_BASE = (
+  process.env.NEXT_PUBLIC_API_URL || "https://thoughtdom-api.onrender.com"
+).replace(/\/+$/, "");
 
 export function mediaUrl(path: string): string {
   if (/^https?:\/\//.test(path)) return path;
