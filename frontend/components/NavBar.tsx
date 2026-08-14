@@ -132,7 +132,7 @@ export default function NavBar() {
         </nav>
 
         {/* Desktop search -- centered between brand and actions. */}
-        <div className="flex-1 hidden md:block max-w-sm mx-auto">
+        <div className="flex-1 hidden md:block max-w-sm mx-auto px-3">
           <SearchInput
             value={searchDraft}
             onChange={setSearchDraft}
