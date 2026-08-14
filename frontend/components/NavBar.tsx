@@ -132,7 +132,7 @@ export default function NavBar() {
         </nav>
 
         {/* Desktop search -- centered between brand and actions. */}
-        <div className="flex-1 shrink-0 hidden md:block max-w-sm mx-auto px-2" style={{ minWidth: "14rem", marginInline: "0.75rem" }}>
+        <div className="shrink-0 hidden md:block mx-auto px-2" style={{ width: "14rem", marginInline: "0.75rem" }}>
           <SearchInput
             value={searchDraft}
             onChange={setSearchDraft}
@@ -307,7 +307,7 @@ function SearchInput({
         placeholder={mobile ? t("search.placeholderMobile") : t("search.placeholder")}
         aria-label={t("search.title")}
         autoComplete="off"
-        className={`w-full rounded-md bg-surface2 border border-line px-3 py-1.5 ps-2.5 text-sm text-text placeholder:text-muted/70 outline-none focus:border-signal ${
+        className={`w-full min-w-0 rounded-md bg-surface2 border border-line px-3 py-1.5 ps-2.5 text-sm text-text placeholder:text-muted/70 outline-none focus:border-signal ${
           mobile ? "pe-8" : "pe-8"
         }`}
       />
