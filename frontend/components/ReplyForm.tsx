@@ -36,6 +36,17 @@ export default function ReplyForm({
   } | null>(null);
   const [loading, setLoading] = useState(false);
   const t = useTranslations();
+
+  // The gate returns a localization key (e.g. "feedbackTooShort") so the
+  // held-comment feedback renders in the reader's own language.
+  function feedbackText(raw: string): string {
+    if (!raw) return "";
+    try {
+      return t.raw(`challenge.${raw}`) as string;
+    } catch {
+      return raw;
+    }
+  }
   const steelmanId = useId();
   const steelValid = useSteelmanValidation();
 
@@ -132,7 +143,7 @@ export default function ReplyForm({
               ? t("gate.heldTitle")
               : t("gate.failedTitle")}
           </p>
-          <p className="text-sm text-text/90 mb-2">{heldComment.feedback}</p>
+          <p className="text-sm text-text/90 mb-2">{feedbackText(heldComment.feedback)}</p>
           <label htmlFor={steelmanId} className="text-xs text-muted block mb-1">
             {t("gate.reviseHint")}
           </label>
@@ -150,8 +161,7 @@ export default function ReplyForm({
       ) : replyType === "challenge" ? (
         <div className="animate-fade-in-up">
           <label htmlFor={steelmanId} className="text-xs text-challenge block mb-1">
-            First, restate the argument you&apos;re disagreeing with, fairly &mdash; this has to
-            pass a fairness check before your challenge can post.
+            {t("challenge.fairSummary")}
           </label>
           <textarea
             id={steelmanId}

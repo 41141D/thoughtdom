@@ -44,7 +44,12 @@
     "neutral": "Neutral",
     "agree": "Agree",
     "challenge": "Challenge",
-    "fairSummary": "First summarize the idea fairly, then write your critique."
+    "fairSummary": "First summarize the idea fairly, then write your critique.",
+    "feedbackTooShort": "Your restatement is too short to show you engaged with the argument. Restate the other side's point in a sentence or two before disagreeing.",
+    "feedbackNotEngaged": "That doesn't look like an engagement with the argument -- try restating the point you're responding to.",
+    "feedbackAbusive": "Personal attacks aren't allowed here. Disagree with the argument, not the person, and try again.",
+    "feedbackNotConnected": "This doesn't appear connected to the argument you're challenging. Restate the point you're responding to first -- even approaching it from a different angle is fine, as long as the relationship is clear.",
+    "feedbackNeedsClarity": "Your point may be relevant, but the connection to the original argument isn't clear yet. Try explaining which part of the argument you're responding to and why their reasoning falls short."
   },
   "votes": {
     "upvote": "Upvote",

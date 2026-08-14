@@ -115,17 +115,12 @@ def evaluate_steelman(original_text: str, restatement: str,
     only acts as a floor for NEEDS_IMPROVEMENT -> PASS promotion.
     """
     if not restatement or len(restatement.strip()) < 6:
-        return ("failed", 0.0,
-                "Your restatement is too short to show you engaged with the "
-                "argument. Restate the other side's point in a sentence or "
-                "two before disagreeing.")
+        return ("failed", 0.0, "feedbackTooShort")
 
     # Nonsense/obvious-spam guard: no real words at all.
     tokens = _tokenize(restatement)
     if len(tokens) < 2:
-        return ("failed", 0.0,
-                "That doesn't look like an engagement with the argument -- "
-                "try restating the point you're responding to.")
+        return ("failed", 0.0, "feedbackNotEngaged")
 
     signals = _shared_topic_signals(original_text, restatement)
     overlap = _overlap_ratio(original_text, restatement)
@@ -142,23 +137,13 @@ def evaluate_steelman(original_text: str, restatement: str,
 
     # Abusive or clearly disengaged content -> FAIL.
     if abuse and signals < 2:
-        return ("failed", score,
-                "Personal attacks aren't allowed here. Disagree with the "
-                "argument, not the person, and try again.")
+        return ("failed", score, "feedbackAbusive")
     if signals <= 1:
-        return ("failed", score,
-                "This doesn't appear connected to the argument you're "
-                "challenging. Restate the point you're responding to first "
-                "-- even approaching it from a different angle is fine, as "
-                "long as the relationship is clear.")
+        return ("failed", score, "feedbackNotConnected")
 
     # In between: a real attempt whose connection isn't fully clear.
     # The user revises rather than being rejected.
-    return ("needs_improvement", score,
-            "Your point may be relevant, but the connection to the original "
-            "argument isn't clear yet. Try explaining which part of the "
-            "argument you're responding to and why their reasoning falls "
-            "short.")
+    return ("needs_improvement", score, "feedbackNeedsClarity")
 
 
 # Backwards-compatible shim so callers of the old API keep working.

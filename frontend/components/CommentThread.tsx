@@ -115,7 +115,7 @@ function CommentNodeView({
     >
       <div className="rounded-lg border border-line bg-surface p-3.5 transition-colors hover:border-line/80">
         <div className="flex items-center gap-2 mb-2">
-          <span className={`reply-type-pill ${PILL_STYLES[node.reply_type]}`}>{node.reply_type}</span>
+          <span className={`reply-type-pill ${PILL_STYLES[node.reply_type]}`}>{t(`challenge.${node.reply_type}`)}</span>
           {node.reply_type === "challenge" && node.steelman_status && node.steelman_status !== "passed" && (
             <span className="reply-type-pill bg-danger/15 text-danger" title={node.steelman_feedback || undefined}>
               {node.steelman_status === "needs_improvement" ? t("gate.heldShort") : t("gate.failedShort")}
