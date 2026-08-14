@@ -2,6 +2,7 @@
   "nav": {
     "why": "Why",
     "communities": "Communities",
+    "about": "About",
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "newPost": "New Post",
@@ -391,5 +392,56 @@
     "passwordRequired": "Password is required",
     "passwordMin": "Password must be at least 8 characters",
     "steelmanRequired": "Restate the argument you are disagreeing with first"
+  },
+  "about": {
+    "title": "About NovaTech",
+    "description": "Meet NovaTech — the team behind ThoughtDom.",
+    "meta": {
+      "title": "About NovaTech — Who We Are",
+      "description": "ThoughtDom is built by NovaTech: Dana Gailan, Hazim Ali, and Amad Shekha."
+    },
+    "hero": {
+      "heading": "Built by humans. Made for thought.",
+      "subheading": "Meet the team behind ThoughtDom."
+    },
+    "intro": {
+      "title": "Who we are",
+      "paragraphs": [
+        "ThoughtDom is developed and maintained by NovaTech — a small group of builders who believe ideas deserve a place where they are judged on their own merit.",
+        "We don't collect emails, phone numbers, or behavioral data. There are no follower counts to chase and no profiles to perform for. Just a quiet space for ideas and honest conversation.",
+        "If you ever want to reach us, we're around on Instagram and Telegram."
+      ]
+    },
+    "team": {
+      "title": "The team",
+      "members": [
+        {
+          "name": "Dana Gailan",
+          "role": "Developer"
+        },
+        {
+          "name": "Hazim Ali",
+          "role": "Developer"
+        },
+        {
+          "name": "Amad Shekha",
+          "role": "Developer"
+        }
+      ]
+    },
+    "social": {
+      "title": "Follow NovaTech",
+      "links": [
+        {
+          "label": "Instagram — @novatech.krd",
+          "href": "https://www.instagram.com/novatech.krd/"
+        },
+        {
+          "label": "Telegram — @NovaTechKrdd",
+          "href": "https://t.me/NovaTechKrdd"
+        }
+      ]
+    },
+    "closing": "A place for ideas, not identities."
   }
 }

@@ -119,6 +119,12 @@ export default function NavBar() {
           >
             {t("nav.communities")}
           </Link>
+          <Link
+            href="/about"
+            className="px-2.5 py-2 rounded-md text-muted hover:text-text hover:bg-surface2 transition-colors"
+          >
+            {t("nav.about")}
+          </Link>
         </nav>
 
         {/* Desktop search -- centered between brand and actions. */}

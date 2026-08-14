@@ -10,7 +10,8 @@
     "theme": "ڕووکار",
     "settings": "ڕێکخستنەکان",
     "userMenu": "مێنیوی بەکارهێنەر",
-    "profile": "پرۆفایل"
+    "profile": "پرۆفایل",
+    "about": "دەربارە"
   },
   "auth": {
     "title": "ناوی نەناسراو بەدەستبهێنە",
@@ -391,5 +392,56 @@
     "passwordRequired": "وشەی نهێنی پێویستە",
     "passwordMin": "وشەی نهێنی دەبێت لانیکەم ٨ پیت بێت",
     "steelmanRequired": "سەرەتا ئەو بیرۆکەیەی کە پێی دژایت، بە دادپەروەری دوبارە بکەرەوە"
+  },
+  "about": {
+    "title": "دەربارەی NovaTech",
+    "description": "NovaTech بناسە — تیمەکەی پشت ThoughtDom.",
+    "meta": {
+      "title": "دەربارەی NovaTech — ئێمە کێین",
+      "description": "ThoughtDom لەلایەن NovaTech دروستکراوە: Dana Gailan، Hazim Ali، و Amad Shekha."
+    },
+    "hero": {
+      "heading": "لەلایەن مرۆڤەوە دروستکراوە. بۆ بیرکردنەوە.",
+      "subheading": "تیمەکەی پشت ThoughtDom بناسە."
+    },
+    "intro": {
+      "title": "ئێمە کێین",
+      "paragraphs": [
+        "ThoughtDom لەلایەن NovaTech دروست و بەڕێوە دەبرێت — گرووپێکی بچووکی دروستکەر کە باوەڕیان بەوە هەیە بیرۆکەکان شایستەی شوێنێکن تێیدا بەپێی کێشی خۆیان هەڵبسەنگێندرێن.",
+        "ئیمەیڵ، ژمارەی تەلەفۆن، یان داتای هەڵسوکەوت کۆناکەینەوە. هیچ ژمارەی فۆڵۆوەر نییە بەدوای بکەویت و هیچ پڕۆفایلێک نییە بۆ نواندن. تەنها شوێنێکی ئارام بۆ بیرۆکەکان و گفتوگۆی ڕاستگۆیانە.",
+        "ئەگەر هەرکاتێکت ویستیت پەیوەندیمان پێوە بکەیت، لە ئینستاگرام و تێلێگرام لەبەردەستین."
+      ]
+    },
+    "team": {
+      "title": "تیمەکە",
+      "members": [
+        {
+          "name": "Dana Gailan",
+          "role": "گەشەپێدەر"
+        },
+        {
+          "name": "Hazim Ali",
+          "role": "گەشەپێدەر"
+        },
+        {
+          "name": "Amad Shekha",
+          "role": "گەشەپێدەر"
+        }
+      ]
+    },
+    "social": {
+      "title": "NovaTech بەدوادابچە",
+      "links": [
+        {
+          "label": "ئینستاگرام — @novatech.krd",
+          "href": "https://www.instagram.com/novatech.krd/"
+        },
+        {
+          "label": "تێلێگرام — @NovaTechKrdd",
+          "href": "https://t.me/NovaTechKrdd"
+        }
+      ]
+    },
+    "closing": "شوێنێک بۆ بیرۆکەکان، نەک بۆ ناسنامەکان."
   }
 }
