@@ -1,6 +1,6 @@
 import os
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import inspect, text
@@ -46,6 +46,31 @@ if "*" in cors_origins:
         "CORS_ORIGINS must not contain '*': allow_credentials=True and a "
         "wildcard origin are incompatible. List explicit origins instead."
     )
+
+@app.middleware("http")
+async def _internal_slash_rewrite(request: Request, call_next):
+    """Zero-redirect tolerance for both slash variants of every API path.
+
+    The Vercel rewrite forwards /api/* here, but Vercel's own routing still
+    strips trailing slashes (OPTIONS /api/posts/ -> /api/posts) before the
+    rewrite fires. Render must therefore answer BOTH /posts and /posts/ --
+    but it must NOT issue an HTTP 308 (an absolute redirect would drag the
+    browser cross-origin to onrender.com and drop the HttpOnly cookie).
+    Instead this middleware rewrites the path INTERNALLY (no response
+    redirect, browser never sees it) so FastAPI routing matches the
+    canonical slash form. Static/media paths and health are untouched.
+    """
+    path = request.scope.get("path", "")
+    if (
+        path
+        and not path.endswith("/")
+        and not path.startswith("/media")
+        and path != "/health"
+        and "." not in path
+    ):
+        request.scope["path"] = path + "/"
+    return await call_next(request)
+
 
 app.add_middleware(
     CORSMiddleware,
