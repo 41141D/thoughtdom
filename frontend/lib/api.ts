@@ -290,7 +290,7 @@ export const api = {
     target_id: string,
     value: number
   ) =>
-    request("/votes/", {
+    request("/votes", {
       method: "POST",
       body: JSON.stringify({
         target_type,
