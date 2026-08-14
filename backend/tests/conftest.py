@@ -26,6 +26,20 @@ os.environ["JWT_SECRET"] = f"dev-test-secret-{uuid.uuid4().hex}"
 os.environ.pop("SUPABASE_URL", None)
 os.environ.pop("SUPABASE_SERVICE_ROLE_KEY", None)
 os.environ["ENVIRONMENT"] = "test"
+# The suite exercises rate limiting with real Redis whenever it is available
+# (that mirrors production), so the signup/login ceilings are raised here:
+# ~60 test users register in one run, and several tests log in repeatedly.
+# These overrides only apply while tests import config, before settings are
+# frozen; they never touch production defaults.
+# Each run gets its own isolated Redis database number so leftover counters
+# from previous runs can't 429 this run's signup burst (production realism
+# without cross-run pollution).
+os.environ["REDIS_URL"] = f"redis://localhost:6379/{uuid.uuid4().int % 14}"
+os.environ["RATE_LIMIT_SIGNUPS_PER_HOUR_PER_IP"] = "200"
+os.environ["RATE_LIMIT_LOGINS_PER_MIN_PER_IP"] = "200"
+os.environ["RATE_LIMIT_VOTES_PER_MIN"] = "1000"
+os.environ["RATE_LIMIT_COMMENTS_PER_MIN"] = "200"
+os.environ["RATE_LIMIT_POSTS_PER_MIN"] = "100"
 
 
 @pytest.fixture(scope="session")
@@ -63,9 +77,16 @@ def db_session():
 
 
 def create_user(client, password="password123", preferred_username=None):
+    """Register a test user. Since the no-silent-rename fix, the API rejects
+    registrations that specify neither a username nor the explicit opt-in
+    for a random anonymous identity -- so tests that don't care about the
+    exact name opt in (random_username=True) while tests that pin a name
+    pass preferred_username as before."""
     body = {"password": password}
     if preferred_username:
         body["preferred_username"] = preferred_username
+    else:
+        body["random_username"] = True
     return client.post("/auth/register", json=body)
 
 

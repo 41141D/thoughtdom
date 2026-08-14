@@ -24,7 +24,9 @@
     "username": "Username",
     "anonNameTitle": "Get an anonymous name",
     "anonNameSub": "No email. No real name. We’ll assign one, or you can propose your own.",
-    "preferredPlaceholder": "e.g. QuietFalcon"
+    "preferredPlaceholder": "e.g. QuietFalcon",
+    "randomIdentity": "Surprise me — assign a random anonymous name",
+    "randomIdentityNote": "We pick a unique name you can never change. Write down your password — it is your only way back in."
   },
   "post": {
     "newPost": "New Post",
@@ -378,5 +380,11 @@
     "error": "Search failed: {error}",
     "resultsFor": "Results for “{query}”",
     "postScore": "{count} points"
+  },
+  "validation": {
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required",
+    "passwordMin": "Password must be at least 8 characters",
+    "steelmanRequired": "Restate the argument you are disagreeing with first"
   }
 }

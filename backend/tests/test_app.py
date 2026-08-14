@@ -289,7 +289,7 @@ def test_steelman_holds_ambiguous_challenge_for_revision(client):
     assert r4.json()["steelman_status"] == "passed", r4.text
 
     # Strangers cannot revise someone else's held attempt.
-    r5 = create_user(client, preferred_username="outsider")
+    r5 = create_user(client, preferred_username="outsider1")
     r6 = client.patch(
         f"/comments/{comment_id}/steelman",
         json={"steelman_text": "Walking daily improves cardiovascular health"},

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 import { api } from "../lib/api";
 import { Button } from "./ui/Button";
+import { useSteelmanValidation } from "./FormValidation";
 
 type ReplyType = "neutral" | "agree" | "challenge";
 
@@ -36,6 +37,7 @@ export default function ReplyForm({
   const [loading, setLoading] = useState(false);
   const t = useTranslations();
   const steelmanId = useId();
+  const steelValid = useSteelmanValidation();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -140,6 +142,7 @@ export default function ReplyForm({
             rows={2}
             value={steelman}
             onChange={(e) => setSteelman(e.target.value)}
+            {...steelValid}
             placeholder={t("ui.steelmanPlaceholder")}
             className="w-full rounded-lg bg-surface border border-line px-3 py-2 text-sm outline-none focus:border-challenge transition-colors"
           />
@@ -156,6 +159,7 @@ export default function ReplyForm({
             rows={2}
             value={steelman}
             onChange={(e) => setSteelman(e.target.value)}
+            {...steelValid}
             placeholder={t("ui.steelmanPlaceholder")}
             className="w-full rounded-lg bg-surface2 border border-line px-3 py-2 text-sm outline-none focus:border-challenge transition-colors"
           />

@@ -180,7 +180,7 @@ def test_member_can_create_community_post(client):
 def test_non_member_post_is_403(client):
     owner = create_user(client, preferred_username="nowner")
     room = _create_community(client, _token(owner), "notmem")
-    outsider = create_user(client, preferred_username="outsider")
+    outsider = create_user(client, preferred_username="outsider5")
     p = _make_post(client, _token(outsider), room["id"])
     assert p.status_code == 403, p.text
     assert "join" in p.json()["detail"].lower(), "Error must say to join first"
@@ -379,7 +379,7 @@ def test_general_comments_still_work(client):
 
 def test_member_of_a_cannot_post_in_b(client):
     owner_a = create_user(client, preferred_username="aowner")
-    owner_b = create_user(client, preferred_username="bowner")
+    owner_b = create_user(client, preferred_username="bowner4")
     room_a = _create_community(client, _token(owner_a), "roomalpha")
     room_b = _create_community(client, _token(owner_b), "roombeta")
 

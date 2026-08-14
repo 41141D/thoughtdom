@@ -91,7 +91,7 @@ def test_search_posts_public_for_general(client):
 
 def test_search_posts_hidden_from_non_member(client):
     """A room post must never appear in search results for a non-member."""
-    o_tok = _register(client, "roomowner2")
+    o_tok = _register(client, "hiddenowner2")
     room = _create_community(client, o_tok, "hiddenroom2")
     post = _make_post(
         client, o_tok, room["id"], "Hidden quillsmith room post", "hiddenroom body"

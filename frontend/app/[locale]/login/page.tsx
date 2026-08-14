@@ -4,9 +4,11 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { api, notifySession } from "../../../lib/api";
 import { Button } from "../../../components/ui/Button";
+import { useFieldValidation } from "../../../components/FormValidation";
 
 export default function LoginPage() {
   const t = useTranslations();
+  const valid = useFieldValidation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -42,6 +44,7 @@ export default function LoginPage() {
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            {...valid("validation.usernameRequired")}
             className="w-full rounded-lg bg-surface2 border border-line px-3 py-2 text-sm outline-none focus:border-signal"
           />
         </div>
@@ -55,6 +58,7 @@ export default function LoginPage() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            {...valid("validation.passwordRequired")}
             className="w-full rounded-lg bg-surface2 border border-line px-3 py-2 text-sm outline-none focus:border-signal"
           />
         </div>

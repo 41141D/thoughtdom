@@ -135,12 +135,13 @@ async function uploadFile(path: string, file: Blob, filename: string) {
 }
 
 export const api = {
-  register: (password: string, preferred_username?: string) =>
+  register: (password: string, preferred_username?: string, random_username = false) =>
     request("/auth/register", {
       method: "POST",
       body: JSON.stringify({
         password,
         preferred_username,
+        random_username,
       }),
     }),
 

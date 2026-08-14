@@ -9,7 +9,7 @@ def test_logout_clears_cookie_and_me_returns_401(client):
     # 1. Register -- expect the td_token cookie to be set.
     res = client.post("/auth/register", json={
         "password": "regression-test-pass",
-        "preferred_username": None,
+        "random_username": True,
     })
     assert res.status_code == 200, res.text
     token_cookie = res.cookies.get("td_token")

@@ -24,7 +24,9 @@
     "username": "اسم المستخدم",
     "anonNameTitle": "احصل على اسم مجهول",
     "anonNameSub": "لا بريد إلكتروني. لا اسم حقيقي. سنُعيّن لك اسمًا، أو يمكنك اقتراح اسمك الخاص.",
-    "preferredPlaceholder": "مثلًا: صقر_هادئ"
+    "preferredPlaceholder": "مثلًا: صقر_هادئ",
+    "randomIdentity": "فاجئني — عيّن لي اسمًا مجهولًا عشوائيًا",
+    "randomIdentityNote": "سنختار لك اسمًا فريدًا لا يمكن تغييره. اكتب كلمة المرور في مكان آمن — فهي طريقتك الوحيدة للعودة."
   },
   "post": {
     "newPost": "منشور جديد",
@@ -379,5 +381,11 @@
     "error": "فشل البحث: {error}",
     "resultsFor": "نتائج ل“{query}”",
     "postScore": "{count} نقطة"
+  },
+  "validation": {
+    "usernameRequired": "اسم المستخدم مطلوب",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "passwordMin": "يجب أن تكون كلمة المرور ٨ أحرف على الأقل",
+    "steelmanRequired": "أعِد صياغة الحجة التي تعترض عليها بإنصاف أولاً"
   }
 }
