@@ -146,7 +146,7 @@ export default function NavBar() {
             <>
               <Link
                 href="/create"
-                className="h-9 px-4 text-sm font-medium rounded-md bg-signal text-white hover:bg-signalHover active:bg-[#12323a] transition-colors"
+                className="h-8 px-3 text-[13px] font-medium rounded-md bg-signal text-white hover:bg-signalHover active:bg-[#12323a] transition-colors whitespace-nowrap"
               >
                 {t("post.newPost")}
               </Link>
@@ -170,7 +170,7 @@ export default function NavBar() {
               </Link>
               <Link
                 href="/register"
-                className="h-9 px-4 text-sm font-medium rounded-md bg-signal text-white hover:bg-signalHover active:bg-[#12323a] transition-colors"
+                className="h-8 px-3 text-[13px] font-medium rounded-md bg-signal text-white hover:bg-signalHover active:bg-[#12323a] transition-colors whitespace-nowrap"
               >
                 {t("nav.getName")}
               </Link>
@@ -183,14 +183,14 @@ export default function NavBar() {
           {username ? (
             <Link
               href="/create"
-              className="h-9 px-3.5 text-sm font-medium rounded-md bg-signal text-white active:bg-signalHover transition-colors"
+              className="h-8 px-3 text-[13px] font-medium rounded-md bg-signal text-white active:bg-signalHover transition-colors whitespace-nowrap"
             >
               {t("post.newPost")}
             </Link>
           ) : (
             <Link
               href="/register"
-              className="h-9 px-3.5 text-sm font-medium rounded-md bg-signal text-white active:bg-signalHover transition-colors"
+              className="h-8 px-3 text-[13px] font-medium rounded-md bg-signal text-white active:bg-signalHover transition-colors whitespace-nowrap"
             >
               {t("nav.getName")}
             </Link>
