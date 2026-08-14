@@ -389,3 +389,124 @@ pre {
 .about-link-dot {
   box-shadow: 0 0 8px rgba(79, 195, 247, 0.8);
 }
+
+/* The layout wraps every page in a narrow cream `main` container
+   (.max-w-2xl). On the About page we break out of it so the
+   futuristic design can breathe edge to edge. */
+html:has(main > .about-wrap) body {
+  background-color: #0b1219 !important;
+}
+main:has(> .about-wrap) {
+  max-width: none !important;
+  padding-inline: 0 !important;
+  background-color: #0b1219;
+}
+main:has(> .about-wrap) > .about-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+main:has(> .about-wrap) > .about-wrap > .about-fx {
+  width: 100%;
+  max-width: 64rem;
+  padding-inline: 1.25rem;
+  border-radius: 0;
+}
+@media (min-width: 1024px) {
+  main:has(> .about-wrap) > .about-wrap > .about-fx {
+    padding-inline: 2rem;
+  }
+}
+
+/* ============================================================
+   ABOUT FULL-BLEED WRAPPER
+   The layout wraps every page in a narrow cream container
+   (.max-w-2xl). On the About page we break out of it: the
+   whole viewport goes dark while on /about so the futuristic
+   design can breathe edge to edge.
+   ============================================================ */
+.about-wrap {
+  max-width: none !important;
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+}
+@media (min-width: 640px) {
+  .about-wrap > * {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .about-wrap > * {
+    max-width: 56rem;
+  }
+}
+
+/* ============================================================
+   ABOUT NAV CHROME
+   When the navbar header carries `.about-nav` (i.e. the visitor
+   is on /about), the whole top chrome goes dark-futuristic to
+   match the page. Restores automatically on any other route.
+   ============================================================ */
+.about-nav {
+  background-color: rgba(6, 10, 14, 0.92) !important;
+  border-color: #16304a !important;
+  color: #d5dee6;
+}
+/* Brand stays bright and glowing. */
+.about-nav .font-display.font-semibold {
+  color: #eaf6ff !important;
+  text-shadow: 0 0 12px rgba(79, 195, 247, 0.35);
+}
+.about-nav .font-display .text-signal {
+  color: #4fc3f7 !important;
+  text-shadow: 0 0 16px rgba(79, 195, 247, 0.6);
+}
+/* Desktop nav links: muted slate-blue, brighten on hover. */
+.about-nav .nav-link,
+.about-nav nav a {
+  color: #8aa2b8 !important;
+}
+.about-nav .nav-link:hover,
+.about-nav nav a:hover {
+  color: #eaf6ff !important;
+  background-color: rgba(79, 195, 247, 0.08) !important;
+  border-radius: 0.375rem;
+}
+/* Search input: dark glass with a faint cyan border. */
+.about-nav input[type="search"] {
+  background-color: #0a1620 !important;
+  border-color: #1e4a6e !important;
+  color: #d5dee6 !important;
+}
+.about-nav input[type="search"]::placeholder {
+  color: #5c7690 !important;
+}
+.about-nav input[type="search"]:focus {
+  border-color: #4fc3f7 !important;
+  box-shadow: 0 0 0 1px rgba(79, 195, 247, 0.25);
+}
+.about-nav input[type="search"] + button,
+.about-nav button svg {
+  color: #8aa2b8 !important;
+}
+.about-nav input[type="search"] + button:hover svg,
+.about-nav button:hover svg {
+  color: #4fc3f7 !important;
+}
+/* Primary buttons shift to the glowing cyan on the About page. */
+.about-nav .bg-signal {
+  background-color: #0e4a63 !important;
+  border: 1px solid rgba(79, 195, 247, 0.5);
+}
+.about-nav .bg-signal:hover {
+  background-color: #13607f !important;
+  box-shadow: 0 0 18px rgba(79, 195, 247, 0.35);
+}
+/* Mobile menu: dark glass, cyan hairline top border. */
+.about-nav ~ nav,
+.about-nav + nav {
+  background-color: #0b1219 !important;
+  border-color: #16304a !important;
+}

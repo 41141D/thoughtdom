@@ -32,7 +32,8 @@ export default async function AboutPage({
 
   return (
     // Force the dark, glowing presentation for this page regardless of theme.
-    <div className="min-h-[60vh] about-fx relative overflow-hidden">
+    <div className="about-wrap">
+    <div className="min-h-[60vh] about-fx relative overflow-hidden rounded-xl">
       {/* Grid backdrop */}
       <div className="about-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
       {/* Soft radial glows */}
@@ -49,7 +50,7 @@ export default async function AboutPage({
 
       <article className="relative pb-8">
         {/* ---------- Hero ---------- */}
-        <header className="rounded-lg -mx-4 px-4 pt-16 pb-14 sm:pt-24 sm:pb-20 sm:mx-0 sm:px-8 text-center">
+        <section className="rounded-lg -mx-4 px-4 pt-16 pb-14 sm:pt-24 sm:pb-20 sm:mx-0 sm:px-8 text-center">
           <Reveal>
             <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[#4fc3f7] font-medium mb-6">
               <span className="inline-block w-8 h-px bg-gradient-to-r from-transparent to-[#4fc3f7]" aria-hidden="true" />
@@ -66,7 +67,7 @@ export default async function AboutPage({
           <Reveal delay={150}>
             <div className="about-underline w-24 h-1 mx-auto mt-10" aria-hidden="true" />
           </Reveal>
-        </header>
+        </section>
 
         {/* ---------- Who We Are ---------- */}
         <section aria-labelledby="about-heading" className="pt-10 sm:pt-16">
@@ -146,6 +147,7 @@ export default async function AboutPage({
           </Reveal>
         </footer>
       </article>
+    </div>
     </div>
   );
 }
