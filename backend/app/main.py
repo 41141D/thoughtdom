@@ -61,12 +61,24 @@ async def _internal_slash_rewrite(request: Request, call_next):
     canonical slash form. Static/media paths and health are untouched.
     """
     path = request.scope.get("path", "")
+    # Only slash-canonical route groups get the internal "/" so that both
+    # /posts and /posts/ answer without any HTTP redirect. Auth, users and
+    # health use slash-LESS canonical paths -- leaving them untouched.
+    _slash_canonical_prefixes = (
+        "/posts",
+        "/comments",
+        "/votes",
+        "/communities",
+        "/tags",
+        "/search",
+    )
     if (
         path
         and not path.endswith("/")
         and not path.startswith("/media")
         and path != "/health"
         and "." not in path
+        and path.startswith(_slash_canonical_prefixes)
     ):
         request.scope["path"] = path + "/"
     return await call_next(request)
