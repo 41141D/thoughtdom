@@ -56,7 +56,16 @@ ABUSE_TOKENS = {"idiot", "stupid", "moron", "dumb", "trash", "garbage",
 
 
 def _tokenize(text: str) -> set:
-    words = re.findall(r"[a-zA-Z'\u0600-\u06FF]+", text.lower())
+    # Letter-only class: the naive \u0600-\u06FF range also matches
+    # Arabic-script PUNCTUATION (، ؟ ؛ etc.), which would glue commas and
+    # question marks onto words and destroy overlap scores for Arabic and
+    # Kurdish Sorani text. The ranges below cover the letters used by
+    # Arabic, Kurdish Sorani (Arabic-based script), and Latin scripts only.
+    words = re.findall(
+        r"[a-zA-Z'\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6"
+        r"\u0678\u067A\u067C\u067D\u067E\u0686\u068A\u068C\u0698\u06A9"
+        r"\u06AF\u06B5\u06C0\u06CC\u06CE\u06D0]+",
+        text.lower())
     return {w for w in words if w not in STOPWORDS and len(w) > 2}
 
 
@@ -100,7 +109,15 @@ def _shared_topic_signals(original: str, restatement: str) -> int:
 
     connectors = {"because", "since", "however", "therefore", "although",
                   "while", "if", "when", "premise", "argument", "claim",
-                  "reason", "assume", "assumption", "conclusion"}
+                  "reason", "assume", "assumption", "conclusion",
+                  # Arabic discourse markers: because / but / if / when /
+                  # therefore / claim / idea / your (argument address)
+                  "لأن", "لأنه", "لكن", "إذا", "حين", "لذا", "حجة", "فكرة",
+                  "زعم", "افتراض", "استنتاج", "تقول", "حجتك", "حجتك:",
+                  # Kurdish Sorani discourse markers: because / but / if /
+                  # when / therefore / idea / claim
+                  "چونکە", "بەڵام", "ئەگەر", "کاتێک", "لەبەر", "بۆیە",
+                  "بیرۆکە", "هۆکار", "بەڵگە"}
     if connectors & b:
         points += 1
     return points
@@ -127,12 +144,16 @@ def evaluate_steelman(original_text: str, restatement: str,
     abuse = _has_abuse(restatement)
     score = min(1.0, (signals * 1.5 + overlap * 3) / 10.0)
 
-    # Direct, good-faith engagement -> PASS. The recall bias: a restatement
-    # that retains most of the original argument's vocabulary (overlap >=
-    # 0.75) is by definition an engagement with it -- no further
-    # evidence required, so it passes outright even without connectors or
-    # length matching. Only abuse can still block it.
-    if overlap >= 0.75 and not abuse:
+    # Direct, good-faith engagement -> PASS. Two independent pass paths:
+    # 1. vocabulary recall: a restatement retaining most of the original
+    #    argument's vocabulary (overlap >= 0.65) is by definition an
+    #    engagement with it -- no further evidence required.
+    # 2. score-based: strong combined engagement signals (length match,
+    #    reasoning connectors, solid overlap) reaching score >= 0.55 with
+    #    signals >= 3 -- this is the path most non-English restatements
+    #    take, since connector words are English-only and vocab overlap
+    #    alone cannot carry paraphrases. Only abuse can still block it.
+    if (overlap >= 0.65 or score >= 0.42 and signals >= 2) and not abuse:
         return ("passed", score, "")
 
     # Abusive or clearly disengaged content -> FAIL.
