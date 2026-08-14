@@ -22,6 +22,12 @@ app = FastAPI(
     docs_url=_docs,
     redoc_url=_docs,
     openapi_url=_docs,
+    # CRITICAL: never issue 308 redirects (e.g. /posts -> /posts/). The Vercel
+    # rewrite proxies /api/* here, and Render's ABSOLUTE 308 redirects dragged
+    # browsers cross-origin to onrender.com, dropping the HttpOnly auth cookie
+    # on mutating requests (POST 401 bug). Canonical paths are used everywhere
+    # in the frontend, so no redirects are needed at all.
+    redirect_slashes=False,
 )
 
 cors_origins = parse_cors_origins(settings.cors_origins)
