@@ -18,7 +18,10 @@ def batch_scores(db: Session, target_type: str, target_ids: Iterable[str]) -> Di
         .group_by(Vote.target_id)
         .all()
     )
-    return {target_id: int(total or 0) for target_id, total in rows}
+    # target_id is stored as uuid in Postgres and reads back as a UUID
+    # object, while comment/post ids are Python strings -- normalize to str
+    # so caller dict lookups always hit.
+    return {str(target_id): int(total or 0) for target_id, total in rows}
 
 
 def batch_my_votes(
@@ -40,7 +43,7 @@ def batch_my_votes(
         )
         .all()
     )
-    return {target_id: value for target_id, value in rows}
+    return {str(target_id): value for target_id, value in rows}
 
 
 def score_for(db: Session, target_type: str, target_id: str) -> int:
