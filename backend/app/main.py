@@ -64,21 +64,27 @@ async def _internal_slash_rewrite(request: Request, call_next):
     # Only slash-canonical route groups get the internal "/" so that both
     # /posts and /posts/ answer without any HTTP redirect. Auth, users and
     # health use slash-LESS canonical paths -- leaving them untouched.
-    _slash_canonical_prefixes = (
+    # EXACT-match only: the canonical slash form applies solely to the
+    # collection routes themselves ("/posts", "/posts/" -> list). Parameterized
+    # sub-paths ("/posts/{id}", "/comments/{id}/replies") are slash-LESS
+    # canonical -- rewriting them would add a trailing "/" that matches no
+    # route and produces 404s on every detail page. "startswith" was the
+    # original bug.
+    _slash_canonical_paths = {
         "/posts",
         "/comments",
         "/votes",
         "/communities",
         "/tags",
         "/search",
-    )
+    }
     if (
         path
         and not path.endswith("/")
         and not path.startswith("/media")
         and path != "/health"
         and "." not in path
-        and path.startswith(_slash_canonical_prefixes)
+        and path in _slash_canonical_paths
     ):
         request.scope["path"] = path + "/"
     return await call_next(request)
