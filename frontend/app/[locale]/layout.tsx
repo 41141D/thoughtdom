@@ -10,7 +10,7 @@ import { routing } from "../../i18n/routing";
 
 export const metadata: Metadata = {
   title: "ThoughtDom",
-  description: "Where ideas have names. People don't.",
+  description: "Where ideas have names. People don't. [build:2026-08-14a]",
 };
 
 export function generateStaticParams() {
