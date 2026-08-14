@@ -133,7 +133,12 @@ export default function NavBar() {
         </nav>
 
         {/* Desktop search -- centered between brand and actions. */}
-        <div className="flex-1 min-w-20 hidden md:block" style={{ marginInline: "0.75rem" }}>
+        <div
+          className={`hidden md:block transition-all duration-200 ease-out ${
+            searchDraft.trim() ? "flex-1 min-w-20" : "min-w-16 shrink-0"
+          }`}
+          style={{ marginInline: "0.75rem" }}
+        >
           <SearchInput
             value={searchDraft}
             onChange={setSearchDraft}
@@ -293,6 +298,12 @@ function SearchInput({
   mobile?: boolean;
 }) {
   const t = useTranslations();
+  const [focused, setFocused] = useState(false);
+  const hasValue = value.trim().length > 0;
+  // Expand-only-when-used: the search starts compact and smoothly grows to
+  // fill available space once focused or holding a query. When blurred with
+  // no query, it collapses back so the nav keeps its roomy default look.
+  const expanded = mobile || focused || hasValue;
   return (
     <form
       onSubmit={(e) => {
@@ -308,9 +319,11 @@ function SearchInput({
         placeholder={mobile ? t("search.placeholderMobile") : t("search.placeholder")}
         aria-label={t("search.title")}
         autoComplete="off"
-        className={`w-full min-w-0 rounded-md bg-surface2 border border-line px-3 py-1.5 ps-2.5 text-sm text-text placeholder:text-muted/70 outline-none focus:border-signal overflow-hidden text-ellipsis ${
-          mobile ? "pe-8" : "pe-8"
-        }`}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        className={`min-w-0 rounded-md bg-surface2 border border-line px-3 py-1.5 ps-2.5 text-sm text-text placeholder:text-muted/70 outline-none focus:border-signal overflow-hidden text-ellipsis transition-[width,padding] duration-200 ease-out ${
+          mobile ? "pe-8 w-full" : "pe-8"
+        } ${expanded ? "w-64" : "w-24"}`}
       />
       <button
         type="submit"
