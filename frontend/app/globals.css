@@ -316,3 +316,76 @@ pre {
 .grid > * {
   min-width: 0;
 }
+
+/* ============================================================
+   ABOUT PAGE (NovaTech) -- futuristic, dark, glowing.
+   Deliberately isolated with the `.about-fx` prefix scope so
+   it never leaks into the rest of the app.
+   ============================================================ */
+.about-fx {
+  background-color: #0b1219;
+  color: #d5dee6;
+}
+/* Faint perspective grid, fades out toward the top. */
+.about-grid {
+  background-image:
+    linear-gradient(rgba(79, 195, 247, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 195, 247, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+  opacity: 0.9;
+}
+/* Glowing underline sweep beneath the hero. */
+.about-underline {
+  background: linear-gradient(90deg, transparent, #4fc3f7, #3b6fd9, transparent);
+  animation: about-glow-line 3.4s ease-in-out infinite;
+}
+@keyframes about-glow-line {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+/* Team member card: subtle border glow + scanline sweep on hover. */
+.about-card {
+  position: relative;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.about-card:hover {
+  border-color: rgba(79, 195, 247, 0.7);
+  box-shadow:
+    0 0 0 1px rgba(79, 195, 247, 0.25),
+    0 0 30px rgba(79, 195, 247, 0.28);
+  transform: translateY(-3px);
+}
+.about-avatar {
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.22), rgba(59, 111, 217, 0.08));
+  border: 1px solid rgba(79, 195, 247, 0.45);
+  box-shadow: 0 0 22px rgba(79, 195, 247, 0.3);
+}
+.about-role {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.about-scanline {
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(79, 195, 247, 0.08) 50%,
+    transparent 70%
+  );
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.about-card:hover .about-scanline {
+  opacity: 1;
+  animation: about-scan 1.6s ease-in-out infinite;
+}
+@keyframes about-scan {
+  from { background-position: 150% 0; }
+  to { background-position: -50% 0; }
+}
+.about-link-dot {
+  box-shadow: 0 0 8px rgba(79, 195, 247, 0.8);
+}
