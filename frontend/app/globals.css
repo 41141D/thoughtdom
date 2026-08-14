@@ -474,6 +474,11 @@ main:has(> .about-wrap) > .about-wrap > .about-fx {
   background-color: rgba(79, 195, 247, 0.08) !important;
   border-radius: 0.375rem;
 }
+/* Search wrapper: keep it away from the nav links and action buttons
+   so the input never visually collides with "New Post". */
+.about-nav .flex-1.max-w-sm {
+  margin-inline: 0.75rem;
+}
 /* Search input: dark glass with a faint cyan border. */
 .about-nav input[type="search"] {
   background-color: #0a1620 !important;
