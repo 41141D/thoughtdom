@@ -108,9 +108,10 @@ export default function NavBar() {
           Thought<span className="text-signal">Dom</span>
         </Link>
 
-        {/* Desktop: brand on the left, everything else flows to the right edge. */}
-        <div className="flex-1" />
-        <nav className="hidden md:flex items-center gap-1 text-sm">
+        {/* Desktop nav -- sits right after the brand; the search wrapper below
+             is the only flex-1 child, so it fills the middle with a guaranteed
+             12px margin on each side instead of being squeezed to nothing. */}
+        <nav className="hidden md:flex items-center gap-1 text-sm shrink-0">
           <Link
             href="/why"
             className="px-2.5 py-2 rounded-md text-muted hover:text-text hover:bg-surface2 transition-colors"
@@ -132,7 +133,7 @@ export default function NavBar() {
         </nav>
 
         {/* Desktop search -- centered between brand and actions. */}
-        <div className="shrink-0 hidden md:block mx-auto px-2" style={{ width: "14rem", marginInline: "0.75rem" }}>
+        <div className="flex-1 min-w-20 hidden md:block" style={{ marginInline: "0.75rem" }}>
           <SearchInput
             value={searchDraft}
             onChange={setSearchDraft}
@@ -307,7 +308,7 @@ function SearchInput({
         placeholder={mobile ? t("search.placeholderMobile") : t("search.placeholder")}
         aria-label={t("search.title")}
         autoComplete="off"
-        className={`w-full min-w-0 rounded-md bg-surface2 border border-line px-3 py-1.5 ps-2.5 text-sm text-text placeholder:text-muted/70 outline-none focus:border-signal ${
+        className={`w-full min-w-0 rounded-md bg-surface2 border border-line px-3 py-1.5 ps-2.5 text-sm text-text placeholder:text-muted/70 outline-none focus:border-signal overflow-hidden text-ellipsis ${
           mobile ? "pe-8" : "pe-8"
         }`}
       />
