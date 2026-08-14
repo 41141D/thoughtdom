@@ -70,13 +70,14 @@ async def _internal_slash_rewrite(request: Request, call_next):
     # canonical -- rewriting them would add a trailing "/" that matches no
     # route and produces 404s on every detail page. "startswith" was the
     # original bug.
+    # Slash-LESS canonical routes are deliberately NOT listed: /votes and
+    # /reports are root routes ("@router.post(\"/votes\")"), /search/posts has
+    # no trailing slash -- their canonical form already matches exactly.
     _slash_canonical_paths = {
         "/posts",
         "/comments",
-        "/votes",
         "/communities",
         "/tags",
-        "/search",
     }
     if (
         path
