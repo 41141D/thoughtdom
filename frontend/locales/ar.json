@@ -10,7 +10,8 @@
     "theme": "المظهر",
     "settings": "الإعدادات",
     "userMenu": "قائمة المستخدم",
-    "profile": "الملف الشخصي"
+    "profile": "الملف الشخصي",
+    "about": "عن"
   },
   "auth": {
     "title": "احصل على اسم مجهول",
@@ -284,9 +285,8 @@
   },
   "feed": {
     "subtitle": "كل مساحة تُنشر فيها الأفكار.",
-    "emptyTitle": "Nothing here yet",
-    "emptyBody": "كن أول من ينشر فكرة في {community}.",
     "emptyTitle": "لا يوجد شيء هنا بعد",
+    "emptyBody": "كن أول من ينشر فكرة في {community}.",
     "feedEmptyTitle": "لا يوجد شيء هنا بعد",
     "feedTitle": "أحدث الأفكار",
     "gateHeading": "خالف كما تشاء، لكن أثبت أولًا أنك فهمت.",
@@ -392,5 +392,56 @@
     "passwordRequired": "كلمة المرور مطلوبة",
     "passwordMin": "يجب أن تكون كلمة المرور ٨ أحرف على الأقل",
     "steelmanRequired": "أعِد صياغة الحجة التي تعترض عليها بإنصاف أولاً"
+  },
+  "about": {
+    "title": "عن NovaTech",
+    "description": "تعرف على NovaTech — الفريق وراء ThoughtDom.",
+    "meta": {
+      "title": "عن NovaTech — من نحن",
+      "description": "ThoughtDom مبني بواسطة NovaTech: Dana Gailan و Hazim Ali و Amad Shekha."
+    },
+    "hero": {
+      "heading": "NovaTech — الفريق وراء ThoughtDom",
+      "subheading": "ثلاثة مطورين. قاعدة واحدة: الأفكار فوق الهويات."
+    },
+    "intro": {
+      "title": "من نحن",
+      "paragraphs": [
+        "ThoughtDom يُطوَّر ويُدار بواسطة NovaTech — مجموعة صغيرة من المطورين يؤمنون بأن الأفكار تستحق مكاناً تُقيَّم فيه على جدارتها.",
+        "لا نجمع بريدك الإلكتروني ولا رقم هاتفك ولا بيانات سلوكك. لا أرقام متابعين ولا ملفات شخصية للتحدي. مجرد مساحة هادئة للأفكار والحوار الصادق.",
+        "إن أردت التواصل معنا في أي وقت، ستجدنا على إنستغرام وتليغرام."
+      ]
+    },
+    "team": {
+      "title": "الفريق",
+      "members": [
+        {
+          "name": "Dana Gailan",
+          "role": "مطوّر"
+        },
+        {
+          "name": "Hazim Ali",
+          "role": "مطوّر"
+        },
+        {
+          "name": "Amad Shekha",
+          "role": "مطوّر"
+        }
+      ]
+    },
+    "social": {
+      "title": "تابع NovaTech",
+      "links": [
+        {
+          "label": "إنستغرام — @novatech.krd",
+          "href": "https://www.instagram.com/novatech.krd/"
+        },
+        {
+          "label": "تليغرام — @NovaTechKrdd",
+          "href": "https://t.me/NovaTechKrdd"
+        }
+      ]
+    },
+    "closing": "مكان للأفكار، لا للهويات."
   }
 }

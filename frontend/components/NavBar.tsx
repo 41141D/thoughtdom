@@ -1,6 +1,6 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useRef, useState } from "react";
 import { api, getSession, notifySession, onSessionChange } from "../lib/api";
 import Avatar from "./profile/Avatar";
@@ -9,6 +9,10 @@ import { NavButton } from "./ui/Button";
 export default function NavBar() {
   const t = useTranslations();
   const locale = useLocale();
+  const pathname = usePathname();
+  // Full-viewport futuristic chrome: the About page (dark neon) forces the
+  // nav chrome to match it while on /about, then returns to normal.
+  const onAbout = pathname === "/about";
   const [username, setUsername] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -94,7 +98,7 @@ export default function NavBar() {
   };
 
   return (
-    <header className="border-b border-line sticky top-0 bg-paper/95 backdrop-blur z-20">
+    <header className={`sticky top-0 z-20 border-b border-line bg-paper/95 backdrop-blur transition-colors duration-500 ${onAbout ? "about-nav" : ""}`}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-2.5 flex items-center gap-2">
         {/* Brand */}
         <Link
@@ -118,6 +122,12 @@ export default function NavBar() {
             className="px-2.5 py-2 rounded-md text-muted hover:text-text hover:bg-surface2 transition-colors"
           >
             {t("nav.communities")}
+          </Link>
+          <Link
+            href="/about"
+            className="px-2.5 py-2 rounded-md text-muted hover:text-text hover:bg-surface2 transition-colors"
+          >
+            {t("nav.about")}
           </Link>
         </nav>
 
