@@ -61,7 +61,7 @@ def register(payload: RegisterRequest, request: Request, db: Session = Depends(g
     # log back in, because the account existed under a name they never saw).
     # An anonymous identity is only minted when the user explicitly asks for
     # it via random_username=True.
-    username = payload.preferred_username
+    username = (payload.preferred_username or "").strip()
     if not payload.random_username:
         if not username:
             raise HTTPException(
