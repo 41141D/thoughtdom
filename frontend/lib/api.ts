@@ -261,7 +261,10 @@ export const api = {
     request(`/tags/${communityId ? `?community_id=${encodeURIComponent(communityId)}` : ""}`),
 
   getProfile: (username: string) =>
-    request(`/users/${encodeURIComponent(username)}`),
+    // Next.js dynamic route params arrive percent-encoded (e.g. "%DA%86...")
+    // for non-ASCII usernames. Decoding first prevents double-encoding
+    // ("%25DA...") which makes the backend 404 real users.
+    request(`/users/${encodeURIComponent(decodeURIComponent(username))}`),
 
   listComments: (postId: string) =>
     request(`/comments/post/${postId}`),
