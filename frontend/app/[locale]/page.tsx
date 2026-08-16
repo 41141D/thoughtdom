@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../lib/api";
 import PostCardSkeleton from "../../components/PostCardSkeleton";
 import { primaryLink } from "../../components/ui/Button";
+import { renderMarkdown } from "../../lib/markdown";
 
 type Post = {
   id: string;
@@ -171,7 +172,9 @@ function PostCard({ post, delay }: { post: Post; delay: number }) {
             </span>
           ))}
       </div>
-      <p className="user-content text-sm text-muted mt-1.5 line-clamp-2 leading-relaxed">{post.body}</p>
+      <div className="user-content text-sm text-muted mt-1.5 leading-relaxed max-h-[120px] overflow-hidden">
+        {renderMarkdown(post.body)}
+      </div>
       <div className="mt-3 flex items-center justify-between">
         <div className="text-sm text-signal font-medium">{post.score} {t("ui.points")}</div>
         <span className="text-xs text-muted opacity-0 group-hover:opacity-100 transition-opacity">
