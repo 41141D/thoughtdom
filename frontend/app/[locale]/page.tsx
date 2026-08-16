@@ -172,7 +172,7 @@ function PostCard({ post, delay }: { post: Post; delay: number }) {
             </span>
           ))}
       </div>
-      <div className="user-content text-sm text-muted mt-1.5 leading-relaxed max-h-[120px] overflow-hidden">
+      <div className="user-content text-sm text-muted mt-1.5 leading-relaxed">
         {renderMarkdown(post.body)}
       </div>
       <div className="mt-3 flex items-center justify-between">
